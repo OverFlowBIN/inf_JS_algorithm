@@ -37,3 +37,15 @@ function filter(arr) {
 }
 
 filter(arr);
+console.log("arr", arr);
+// reduce
+// 배열을 탐색하여 callback함수를 통해 어떠한 하나의 값을 생성한다.
+
+function Reduce() {
+  let arr2 = arr.reduce((a, b) => {
+    return a + b;
+  }, 0);
+  console.log(arr2);
+}
+
+Reduce(arr);
