@@ -10,14 +10,41 @@
 // ▣ 입력예제 2 good
 // ▣ 출력예제 2 oo
 
+// solve.1
 function solution1(str) {
   let mid = Math.floor(str.length / 2);
   if (str.length % 2 === 1) {
     return str[mid];
   } else {
-    return str[mid] + str[mid + 1];
+    return str[mid - 1] + str[mid];
   }
 }
 
 console.log(solution1("study"));
 console.log(solution1("good"));
+
+// solve.2
+function solution2(str) {
+  let mid = Math.floor(str.length / 2);
+  if (str.length % 2 === 1) {
+    return str[mid];
+  } else {
+    return str.substring(mid - 1, mid + 1);
+  }
+}
+
+console.log(solution2("study"));
+console.log(solution2("good"));
+
+// solve.3
+function solution3(str) {
+  let mid = Math.floor(str.length / 2);
+  if (str.length % 2 === 1) {
+    return str[mid];
+  } else {
+    return str.substr(mid - 1, 2);
+  }
+}
+
+console.log(solution3("study"));
+console.log(solution3("good"));

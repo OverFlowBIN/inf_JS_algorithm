@@ -14,6 +14,9 @@
 // time
 // student
 
+let arr = ["good", "time", "good", "time", "student"];
+
+// solve.1 (includes) => 4.62ms
 function solution1(arr) {
   let answer = [];
   for (el of arr) {
@@ -22,5 +25,15 @@ function solution1(arr) {
   return answer;
 }
 
-let arr = ["good", "time", "good", "time", "student"];
+console.time("solution1");
 console.log(solution1(arr));
+console.timeEnd("solution1");
+
+// solve.2 (indexOf, filter)
+function solution2(arr) {
+  return arr.filter((el, idx) => arr.indexOf(el) === idx);
+}
+
+console.time("solution2");
+console.log(solution2(arr));
+console.timeEnd("solution2");

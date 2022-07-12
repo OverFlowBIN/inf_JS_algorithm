@@ -9,6 +9,7 @@
 // ▣ 입력예제 1 ksekkset
 // ▣ 출력예제 1 kset
 
+// sovle.1 (includes)
 function solution1(str) {
   let answer = "";
   for (el of str) {
@@ -18,3 +19,25 @@ function solution1(str) {
 }
 
 console.log(solution1("ksekkset"));
+
+// sovle.2 (indexOf)
+function solution2(str) {
+  let answer = "";
+  for (let i = 0; i < str.length; i++) {
+    if (answer.indexOf(str[i]) === -1) answer += str[i];
+  }
+  return answer;
+}
+
+console.log(solution2("ksekkset"));
+
+// sovle.3 (indexOf)
+function solution3(str) {
+  let answer = "";
+  for (let i = 0; i < str.length; i++) {
+    if (str.indexOf(str[i]) === i) answer += str[i];
+  }
+  return answer;
+}
+
+console.log(solution3("ksekkset"));
