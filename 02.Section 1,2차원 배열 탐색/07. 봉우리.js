@@ -43,14 +43,60 @@ function solution1(matrix) {
   return answer;
 }
 
-let matrix = [
-  [5, 3, 7, 2, 3],
-  [3, 7, 1, 6, 1],
-  [7, 2, 5, 3, 4],
-  [4, 3, 6, 4, 1],
-  [8, 7, 3, 5, 2],
+let matrix1 = [
+  [5, 3, 7, 2, 3, 1],
+  [3, 7, 1, 6, 1, 3],
+  [7, 2, 5, 3, 4, 7],
+  [4, 3, 6, 4, 1, 3],
+  [8, 7, 3, 5, 2, 4],
+  [7, 3, 9, 5, 3, 7],
 ];
 
 console.time("solution1");
-console.log(solution1(matrix));
+console.log(solution1(matrix1));
 console.timeEnd("solution1");
+
+function solution2(matrix) {
+  let answer = 0;
+  let len = matrix.length;
+
+  let dx = [-1, 0, 1, 0];
+  let dy = [0, -1, 0, 1];
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len; j++) {
+      let result;
+      for (let k = 0; k < 4; k++) {
+        let nx = i + dx[k];
+        let ny = j + dy[k];
+        // nx, ny는 minus 값이 될 수 있는데 이상태로 돌리면 undefinde와 비교를 해야 하므로 작동이 안됨!!!!!!!
+        // => undefined를 제외 하고 돌리는 방향으로 진행!!
+        if (
+          nx >= 0 &&
+          nx < len &&
+          ny >= 0 &&
+          ny < len &&
+          matrix[i][j] > matrix[nx][ny]
+        ) {
+          result = true;
+        } else {
+          result = false;
+        }
+      }
+      if (result) answer++;
+    }
+  }
+  return answer;
+}
+
+matrix2 = [
+  [5, 3, 7, 2, 3, 1],
+  [3, 7, 1, 6, 1, 3],
+  [7, 2, 5, 3, 4, 7],
+  [4, 3, 6, 4, 1, 3],
+  [8, 7, 3, 5, 2, 4],
+  [7, 3, 9, 5, 3, 7],
+];
+
+console.time("solution2");
+console.log(solution2(matrix2));
+console.timeEnd("solution2");
