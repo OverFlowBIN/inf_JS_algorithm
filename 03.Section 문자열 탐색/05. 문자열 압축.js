@@ -12,10 +12,8 @@ function solution1(str) {
   let answer = "";
   let temp = 1;
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === str[i + 1]) {
-      temp++;
-      console.log(str[i], temp);
-    } else if (str[i] !== str[i + 1]) {
+    if (str[i] === str[i + 1]) temp++;
+    else if (str[i] !== str[i + 1]) {
       if (temp !== 1) {
         answer += str[i] + temp;
         temp = 1;
