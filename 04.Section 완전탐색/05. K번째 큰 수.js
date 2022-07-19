@@ -14,21 +14,19 @@
 // ▣ 출력예제 1 143
 
 function solution1(k, arr) {
-  let sum = [];
+  let answer = [];
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length; j++) {
       for (let k = 0; k < arr.length; k++) {
         if (i !== j && i !== k && j !== k) {
-          sum.push(arr[i] + arr[j] + arr[k]);
-          console.log(arr[i], arr[j], arr[k]);
+          if (!answer.includes(arr[i] + arr[j] + arr[k])) {
+            answer.push(arr[i] + arr[j] + arr[k]);
+          }
         }
       }
     }
   }
-  let answer = [];
-  for (el of sum) {
-    if (!answer.includes(el)) answer.push(el);
-  }
+
   answer = answer.sort((a, b) => b - a);
   return answer[k - 1];
 }
