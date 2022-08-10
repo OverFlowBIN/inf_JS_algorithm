@@ -15,6 +15,7 @@
 // pesudocode
 // 객체를 이용하여 key에 후보명을 넣고 value에는 뽑힌 횟수를 넣어 준 후 최대값을 찾아 준다.
 
+// solve.1 => object 사용
 function solution1(arr) {
   let obj = {};
   let maxNum = 0;
@@ -38,6 +39,7 @@ function solution1(arr) {
   return max;
 }
 
+// solve.1 => new Map() 사용 (ES6 부터 사용 가능)
 function solution2(arr) {
   let map = new Map();
 
