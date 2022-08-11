@@ -52,7 +52,39 @@
 
 // stack => [4, 3, 1, 1, 3, 2, x, 4] => 3, 1 , 1, 3 => return 4ea
 
-function solution(board, move) {}
+function stackCheck(stack) {
+  // 4 3 1 1 3 2 4
+}
+
+function solution(board, moves) {
+  let answer = 0;
+  let stack = [];
+
+  let temp = 0;
+  for (let i = 0; i < moves.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      // 여기서 currentPoint를 설정 하면 if문에 안걸릴떄도 계속 바뀌기 때문에 여기서 하면 안된다.
+      if (board[j][moves[i] - 1] !== 0) {
+        let currentPoint = board[j][moves[i] - 1];
+
+        if (temp === currentPoint) {
+          stack.pop();
+
+          temp = stack[stack.length - 1];
+          answer += 2;
+        } else {
+          stack.push(currentPoint);
+          temp = currentPoint;
+        }
+
+        board[j][moves[i] - 1] = 0;
+        break;
+      }
+    }
+  }
+
+  return answer;
+}
 
 let board = [
   [0, 0, 0, 0, 0],
@@ -61,5 +93,16 @@ let board = [
   [4, 2, 4, 4, 2],
   [3, 5, 1, 3, 1],
 ];
+
 let move = [1, 5, 3, 5, 1, 2, 1, 4];
-console.log(board, move);
+console.log(solution(board, move));
+
+// 4 3 1 3 4 2 4 4
+
+// [0, 0, 0, 0, 0],
+// [0, 0, 1, 0, 3],
+// [0, 2, 5, 0, 1],
+// [0, 2, 4, 4, 2],
+// [3, 5, 1, 3, 1],
+
+// 4
