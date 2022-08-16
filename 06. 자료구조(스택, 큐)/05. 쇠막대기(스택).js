@@ -22,40 +22,7 @@
 // ▣ 출력예제 2 24
 
 // pesudocode
-// 1. 쇠막대기 찾기: for문을 이용하여 쇠막대기를 찾는다 한번에 한줄 찾을 수 있다.
-// 2. 찾은 쇠막대기를 index값으로 배열에 저장 한 후 해달 배열을 for문으로 돌리며 그 인덱스 안에 있는 '()'쌍의 갯수를 찾는다 => 포함되어있는 쌍의 갯수 + 1 => 잘려진 쇠 막대기 갯수
-// let pipe = 0;
-// function solution(str) {
-//   // 쇠막대기 찾기
-//   function findPipe(pipeStr) {
-//     if (pipeStr.split("()").filter((el) => el !== "")[0][0] === ")")
-//       return pipe;
-
-//     let pipeStack = [];
-//     let startIdx = 0;
-//     let endIdx = 0;
-//     for (let i = 0; i < pipeStr.length; i++) {
-//       if (pipeStr[i] === "(") {
-//         if (pipeStack.length === 0) startIdx = i;
-//         pipeStack.push(pipeStr[i]);
-//       } else if (pipeStr[i] === ")") {
-//         endIdx = i;
-//         pipeStack.pop();
-//         if (pipeStack.length === 0 && startIdx !== endIdx - 1) {
-//           pipeStr = pipeStr.slice(startIdx + 1, endIdx);
-//           pipe += pipeStr.split("()").length;
-//           console.log(pipeStr);
-//           pipeStr[startIdx] = "_";
-//           pipeStr[endIdx] = "_";
-//           console.log("=========", pipeStr[startIdx], startIdx, endIdx);
-//           console.log(pipeStr);
-//         }
-//       }
-//     }
-//   }
-
-//   return findPipe(str);
-// }
+// stack으로 처리 할 수 있다는것에 초점을 맞추고 for문을 돌아보며 변화되는 사항을 체크하다 보면 순서가 보인다.
 
 function solution(str) {
   let answer = 0;
