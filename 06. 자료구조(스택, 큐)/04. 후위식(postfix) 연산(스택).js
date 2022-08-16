@@ -16,33 +16,24 @@
 // solve.1
 function solution1(str) {
   let stack = [];
-  let len = stack.length;
-  // let nums = /[1-9]/;
-  for (el of str) {
-    let temp = 0;
 
-    if (el === "+") {
-      temp = stack[stack.length - 2] + stack[stack.length - 1];
-      stack.pop();
-      stack.pop();
-      stack.push(temp);
-    } else if (el === "-") {
-      temp = stack[stack.length - 2] - stack[stack.length - 1];
-      stack.pop();
-      stack.pop();
-      stack.push(temp);
-    } else if (el === "*") {
-      temp = stack[stack.length - 2] * stack[stack.length - 1];
-      stack.pop();
-      stack.pop();
-      stack.push(temp);
-    } else if (el === "/") {
-      temp = stack[stack.length - 2] / stack[stack.length - 1];
-      stack.pop();
-      stack.pop();
-      stack.push(temp);
+  for (el of str) {
+    if (isNaN(Number(el))) {
+      let num2 = stack.pop();
+      let num1 = stack.pop();
+
+      if (el === "+") {
+        stack.push(num1 + num2);
+      } else if (el === "-") {
+        stack.push(num1 - num2);
+      } else if (el === "*") {
+        stack.push(num1 * num2);
+      } else if (el === "/") {
+        stack.push(num1 / num2);
+      }
     } else stack.push(Number(el));
   }
+
   return stack[0];
 }
 
