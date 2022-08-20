@@ -24,36 +24,6 @@
 // 캐시크기 : S => 비어있는 상태로 진행
 // 작업 갯수 : N
 
-// function solution(s, n) {
-//   let cache = [];
-
-//   for (el of n) {
-//     if (cache.length < s) {
-//       let cacheIdx = cache.indexOf(el);
-//       if (cacheIdx < 0) {
-//         cache.push(el);
-//       } else {
-//         for (let i = 1; i < cacheIdx; i++) {
-//           cache[i] = cache[i - 1];
-//         }
-//         cache[0] = el;
-//       }
-//     } else {
-//       let cacheIdx = cache.indexOf(el);
-//       if (cacheIdx < 0) {
-//         cache.pop();
-//         cache.shift(el);
-//       } else {
-//         for (let i = 1; i < cacheIdx; i++) {
-//           cache[i] = cache[i - 1];
-//         }
-//         cache[0] = el;
-//       }
-//     }
-//   }
-//   return cache;
-// }
-
 const solution = (s, n) => {
   let cache = Array.from({ length: s }, () => 0);
 
