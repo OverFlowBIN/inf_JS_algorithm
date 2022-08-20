@@ -15,3 +15,64 @@
 // ▣ 입력예제 1 59
 // 123262357
 // ▣ 출력예제 1 75326
+
+// pesudocode
+// 23167 => unshift로 쌓임 => 가장오래된 순(뒷 순) 으로 삭제된다
+// cash miss : 새로운 작업이 들어올때 캐쉬 용량이 가득 차 있으면 맨뒤에 캐쉬가 작업이 삭제된다.
+// cash hit : 중간에 있는 작업이 실행되면 해당 위치에서는 우선 삭제되고 앞에 있는 작업은 뒤로 밀리고 맨앞에 새로 추가됨
+// 5 2 3 1 6 -> 3 5 2 1 6
+// 캐시크기 : S => 비어있는 상태로 진행
+// 작업 갯수 : N
+
+// function solution(s, n) {
+//   let cache = [];
+
+//   for (el of n) {
+//     if (cache.length < s) {
+//       let cacheIdx = cache.indexOf(el);
+//       if (cacheIdx < 0) {
+//         cache.push(el);
+//       } else {
+//         for (let i = 1; i < cacheIdx; i++) {
+//           cache[i] = cache[i - 1];
+//         }
+//         cache[0] = el;
+//       }
+//     } else {
+//       let cacheIdx = cache.indexOf(el);
+//       if (cacheIdx < 0) {
+//         cache.pop();
+//         cache.shift(el);
+//       } else {
+//         for (let i = 1; i < cacheIdx; i++) {
+//           cache[i] = cache[i - 1];
+//         }
+//         cache[0] = el;
+//       }
+//     }
+//   }
+//   return cache;
+// }
+
+const solution = (s, n) => {
+  let cache = Array.from({ length: s }, () => 0);
+
+  for (el of n) {
+    let cacheIdx = cache.indexOf(el);
+    console.log(cacheIdx);
+    if (cacheIdx < 0) {
+      cache.pop();
+      cache.unshift(el);
+    } else {
+      for (let i = cacheIdx; i >= 1; i--) {
+        cache[i] = cache[i - 1];
+      }
+      cache[0] = el;
+    }
+  }
+
+  return cache;
+};
+
+let n = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+console.log(solution(5, n));
