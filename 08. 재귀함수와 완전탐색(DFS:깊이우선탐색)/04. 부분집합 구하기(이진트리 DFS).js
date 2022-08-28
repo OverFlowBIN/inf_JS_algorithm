@@ -15,53 +15,18 @@
 // 2
 // 3
 
-// function solution(n) {
-//   let answer = [];
-//   // let arr = Array.from({ length: n }, (el, idx) => idx + 1);
-//   // arr = arr.map((el) => [el, true]);
-//   let temp = [];
-//   let isEqual = true;
+// pesudocode
+// 만약 1~3까지 숫자를 이용한 부분집합을 만든다 하면
+// 1,2,3을 한개, 두개, 전체 사용으로 나누어서 부분집합을 정의 할 수 있다
+// [1], [1,2], [1,2,3], [2], [2,3], [3], [1,3], [] => 2^3개(8개) => 나중에 공집합은 제외시키기.
+// DFS(n) => 해당 n을 썻다 안썻다 하는걸 새로운 배열에 저장한다.
+// [0, 0, 0, 0, 0, 0, 0, 0, 0] 해당 n 을 index로 사용하여 사용한다면 0 => 1로 변경
+// 해당 인덱스를 썻다면 ([0, 1, 0, 0] => 1을 사용)
 
-//   function DFS(n, isEqual) {
-//     if (n > 3) return;
-//     else {
-//       console.log(n, isEqual);
-//       DFS(n + 1, true);
-//       DFS(n + 2, false);
-//     }
-//   }
-//   DFS(1, true);
-
-//   return answer;
-// }
-
-// function solution(n) {
-//   let answer = [];
-//   let ch = Array.from({ length: n + 1 }, () => 0);
-//   function DFS(v, isEqual) {
-//     if (v > n) {
-//       let temp = "";
-//       for (let i = 1; i <= n; i++) {
-//         if (ch[i] === 1) temp += `${i} `;
-//       }
-//       if (temp) answer.push(temp.trim());
-//     } else {
-//       ch[v] = 1;
-//       DFS(v + 1);
-//       ch[v] = 0;
-//       DFS(v + 1);
-//     }
-//   }
-//   DFS(1, true);
-//   return answer;
-// }
-
-// console.log(solution(3));
-
+// solve.1
 function solution(n) {
   let answer = [];
   let isUsed = Array.from({ length: n + 1 }, () => 0);
-  // (n=3) => [0, 0, 0, 0]
 
   function DFS(v) {
     if (v > n) {
