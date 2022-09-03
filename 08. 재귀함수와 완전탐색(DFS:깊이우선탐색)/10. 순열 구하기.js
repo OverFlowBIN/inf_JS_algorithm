@@ -17,7 +17,7 @@
 // 9 6
 // 6
 
-function solution(nums, m) {
+function solution1(nums, m) {
   let answer = [];
   nums.sort((a, b) => a - b);
   let isUsed = Array.from({ length: nums.length }, () => 0);
@@ -42,6 +42,30 @@ function solution(nums, m) {
   return answer;
 }
 
+function solution2(nums, n) {
+  let answer = [];
+  let isUsed = Array.from({ length: nums.length }, () => 0);
+  let temp = [];
+
+  function DFS(v) {
+    if (v === n) {
+      answer.push(temp.slice());
+    } else {
+      for (let i = 0; i < nums.length; i++) {
+        if (isUsed[i] === 0) {
+          isUsed[i] = 1;
+          temp[v] = nums[i];
+          DFS(v + 1);
+          isUsed[i] = 0;
+        }
+      }
+    }
+  }
+  DFS(0);
+  return answer;
+}
+
 let m = 2;
 let nums = [3, 6, 9];
-console.log(solution(nums, m));
+console.log(solution1(nums, m));
+console.log(solution2(nums, m));

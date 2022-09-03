@@ -28,7 +28,7 @@ function solution1(n, m) {
       // push temp를 바로 하면 stack이 나중에 최종 temp의 값은 바뀌게 된다 (클로저가 밖에 있어서)
       // 그러므로 slice를 해서 stack이 마무리 됬을때 기준으로 복사를 한 값을 계속 가져가 stack이 종료되도
       // 최종 temp는 유지 시킨 상태로 answer에 push할 수 있게 한다!!!!...
-      answer.push(temp);
+      answer.push(temp.slice());
       return;
       // temp = [];
     } else {
@@ -43,27 +43,26 @@ function solution1(n, m) {
   return answer;
 }
 
-// function solution2(n, m) {
-//   let answer = [];
-//   let temp = Array.from({ length: m }, () => 0);
+function solution2(n, m) {
+  let answer = [];
+  let temp = [];
 
-//   function DFS(v) {
-//     if (v === m) {
-//       answer.push(temp.slice());
-//       return;
-//     } else {
-//       for (let i = 1; i <= n; i++) {
-//         temp[v] = i;
-//         DFS(v + 1);
-//       }
-//     }
-//   }
+  function DFS(v) {
+    if (v === m) {
+      answer.push(temp.slice());
+    } else {
+      for (let i = 1; i <= n; i++) {
+        temp[v] = i;
+        DFS(v + 1);
+      }
+    }
+  }
 
-//   DFS(0);
-//   return answer;
-// }
+  DFS(0);
+  return answer;
+}
 
 let n = 3,
   m = 2;
 console.log(solution1(n, m));
-// console.log(solution2(n, m));
+console.log(solution2(n, m));

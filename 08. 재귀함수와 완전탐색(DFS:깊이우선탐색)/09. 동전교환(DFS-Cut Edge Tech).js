@@ -15,7 +15,7 @@
 // 3
 // 설명 : 5 5 5 동전 3개로 거슬러 줄 수 있다.
 
-function solution(coins, changes) {
+function solution1(coins, changes) {
   let answer = Number.MAX_SAFE_INTEGER;
 
   function DFS(v, sum) {
@@ -37,6 +37,27 @@ function solution(coins, changes) {
   return answer;
 }
 
+function solution2(coins, changes) {
+  let answer = Number.MAX_SAFE_INTEGER;
+
+  function DFS(v, sum) {
+    console.log(v, sum);
+    if (sum > changes || v >= answer) return;
+    if (sum === changes) {
+      answer = Math.min(answer, v);
+      return;
+    } else {
+      for (let i = 0; i < coins.length; i++) {
+        DFS(v + 1, sum + coins[i]);
+      }
+    }
+  }
+
+  DFS(0, 0);
+  return answer;
+}
+
 let coins = [1, 2, 5, 8, 9];
 let changes = 19;
-console.log(solution(coins, changes));
+console.log(solution1(coins, changes));
+console.log(solution2(coins, changes));
