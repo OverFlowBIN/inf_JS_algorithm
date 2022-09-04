@@ -33,6 +33,21 @@ function solution2(num) {
   return answer;
 }
 
+function solution3(num) {
+  let answer;
+
+  function DFS(num) {
+    if (num === 1) return 1;
+    else {
+      return num * DFS(num - 1);
+    }
+  }
+
+  answer = DFS(num);
+  return answer;
+}
+
 let num = 5;
 console.log(solution1(num));
 console.log(solution2(num));
+console.log(solution3(num));

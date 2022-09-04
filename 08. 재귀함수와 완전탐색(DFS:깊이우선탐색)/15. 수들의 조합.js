@@ -16,7 +16,7 @@
 // ▣ 출력예제 1
 // 2
 
-function solution(arr, k) {
+function solution1(arr, k) {
   let answer = [];
   let temp = [];
 
@@ -33,9 +33,30 @@ function solution(arr, k) {
   }
 
   DFS(0, 0, 0);
-  return answer;
+  return answer.length;
+}
+
+function solution2(arr, k) {
+  let answer = [];
+
+  let temp = [];
+  function DFS(v, sum, starIdx) {
+    if (v === 3) {
+      if (sum % 6 === 0) answer.push(temp.slice());
+      else return;
+    } else {
+      for (let i = starIdx; i < arr.length; i++) {
+        temp[v] = arr[i];
+        DFS(v + 1, sum + arr[i], i + 1);
+      }
+    }
+  }
+
+  DFS(0, 0, 0);
+  return answer.length;
 }
 
 let arr = [2, 4, 5, 8, 12];
 let k = 3;
-console.log(solution(arr, k));
+console.log(solution1(arr, k));
+console.log(solution2(arr, k));

@@ -65,7 +65,31 @@ function solution2(nums, n) {
   return answer;
 }
 
+function solution3(nums, m) {
+  let answer = [];
+  let isUsed = Array.from({ length: nums.length }, () => 0);
+
+  let temp = [];
+  function DFS(v) {
+    if (v === m) answer.push(temp.slice());
+    else {
+      for (let i = 0; i < nums.length; i++) {
+        if (isUsed[i] === 0) {
+          temp[v] = nums[i];
+          isUsed[i] = 1;
+          DFS(v + 1);
+          isUsed[i] = 0;
+        }
+      }
+    }
+  }
+
+  DFS(0);
+  return answer;
+}
+
 let m = 2;
 let nums = [3, 6, 9];
 console.log(solution1(nums, m));
 console.log(solution2(nums, m));
+console.log(solution3(nums, m));

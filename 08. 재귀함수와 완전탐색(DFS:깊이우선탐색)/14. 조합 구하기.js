@@ -16,7 +16,7 @@
 // 3 4
 // 6
 
-function solution(n, m) {
+function solution1(n, m) {
   let answer = [];
   let temp = [];
 
@@ -34,4 +34,23 @@ function solution(n, m) {
   return answer;
 }
 
-console.log(solution(4, 2));
+function solution2(m, n) {
+  let answer = [];
+
+  let temp = [];
+  function DFS(v, startIdx) {
+    if (v === n) answer.push(temp.slice());
+    else {
+      for (let i = startIdx; i <= m; i++) {
+        temp[v] = i;
+        DFS(v + 1, i + 1);
+      }
+    }
+  }
+
+  DFS(0, 1);
+  return answer;
+}
+
+console.log(solution1(4, 2));
+console.log(solution2(4, 2));

@@ -15,12 +15,11 @@
 // ▣ 출력예제 2
 // 818809200
 
-function solution(n, r) {
+function solution1(n, r) {
   let answer;
   let stack = Array.from({ length: n + 1 }, () =>
     Array.from({ length: r + 1 }, () => 0)
   );
-  console.log(stack);
 
   function DFS(n, r) {
     if (stack[n][r] > 0) return stack[n][r];
@@ -33,5 +32,27 @@ function solution(n, r) {
   return answer;
 }
 
-console.log(solution(5, 3));
-console.log(solution(33, 19));
+function solution2(n, r) {
+  let answer;
+  let graph = Array.from({ length: n + 1 }, () =>
+    Array.from({ length: r + 1 }, () => 0)
+  );
+
+  function DFS(n, r) {
+    if (n === r || r === 0) return 1;
+    if (graph[n][r] !== 0) return graph[n][r];
+    else {
+      // nCr = n-1Cr-1 + n-1Cr, graph에 return 값 넣기
+      return (graph[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r));
+    }
+  }
+
+  answer = DFS(n, r);
+  return answer;
+}
+
+console.log(solution1(5, 3));
+console.log(solution1(33, 19));
+
+console.log(solution2(5, 3));
+console.log(solution2(33, 19));

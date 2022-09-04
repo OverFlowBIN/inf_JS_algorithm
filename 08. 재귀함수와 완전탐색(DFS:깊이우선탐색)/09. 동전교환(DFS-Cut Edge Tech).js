@@ -9,7 +9,7 @@
 // 첫 번째 줄에 거슬러 줄 동전의 최소개수를 출력한다.
 // ▣ 입력예제 1
 // 3
-// 125
+// 1 2 5
 // 15
 // ▣ 출력예제 1
 // 3
@@ -24,7 +24,6 @@ function solution1(coins, changes) {
       return;
     }
     if (sum === changes) {
-      console.log(v, sum);
       answer = Math.min(answer, v);
     } else {
       for (let i = 0; i < coins.length; i++) {
@@ -41,7 +40,6 @@ function solution2(coins, changes) {
   let answer = Number.MAX_SAFE_INTEGER;
 
   function DFS(v, sum) {
-    console.log(v, sum);
     if (sum > changes || v >= answer) return;
     if (sum === changes) {
       answer = Math.min(answer, v);
@@ -57,7 +55,25 @@ function solution2(coins, changes) {
   return answer;
 }
 
+function solution3(coins, changes) {
+  let answer = Number.MAX_SAFE_INTEGER;
+
+  function DFS(v, sum) {
+    if (sum === changes) answer = Math.min(answer, v);
+    if (sum > changes) return;
+    else {
+      for (let i = 0; i < coins.length; i++) {
+        DFS(v + 1, sum + coins[i]);
+      }
+    }
+  }
+
+  DFS(0, 0);
+  return answer;
+}
+
 let coins = [1, 2, 5, 8, 9];
 let changes = 19;
 console.log(solution1(coins, changes));
 console.log(solution2(coins, changes));
+console.log(solution3(coins, changes));
