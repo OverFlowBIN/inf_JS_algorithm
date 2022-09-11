@@ -21,6 +21,64 @@ function solution1(k, arr) {
       if (temp === k) answer++;
       else if (temp > k) break;
     }
+    // console.log("1", temp);
+  }
+  return answer;
+}
+
+// solve.2 review => n^2 algorithm
+function solution2(k, arr) {
+  let answer = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    let temp = 0;
+    for (let j = i; j < arr.length; j++) {
+      temp += arr[j];
+      if (temp > k) break;
+      else if (temp === k) {
+        answer++;
+        break;
+      }
+    }
+    if (temp < k) break;
+    // console.log("2", temp);
+  }
+  return answer;
+}
+
+// solve.3 review => n algorithm
+function solution3(k, arr) {
+  let answer = 0;
+  let sum = arr[0];
+  let start = 0;
+  let end = 0;
+
+  while (end < arr.length) {
+    if (sum < k) {
+      sum += arr[end++];
+    }
+    if (sum > k) {
+      sum -= arr[start++];
+    }
+    if (sum === k) {
+      answer++;
+      sum -= arr[start++];
+    }
+  }
+  return answer;
+}
+
+function solution4(m, arr) {
+  let answer = 0,
+    lt = 0,
+    sum = 0;
+  for (let rt = 0; rt < arr.length; rt++) {
+    sum += arr[rt];
+    if (sum === m) answer++;
+    while (sum >= m) {
+      sum -= arr[lt++];
+      if (sum === m) answer++;
+    }
   }
   return answer;
 }
@@ -28,3 +86,15 @@ function solution1(k, arr) {
 let k = 6;
 let arr = [1, 2, 1, 3, 1, 1, 1, 2];
 console.log(solution1(k, arr));
+
+console.time("2");
+console.log(solution2(k, arr));
+console.timeEnd("2");
+
+console.time("3");
+console.log(solution3(k, arr));
+console.timeEnd("3");
+
+console.time("4");
+console.log(solution4(k, arr));
+console.timeEnd("4");

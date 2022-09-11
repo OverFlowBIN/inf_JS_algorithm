@@ -12,7 +12,8 @@
 // ▣ 입력예제 1 55 13123
 // ▣ 출력예제 1 10
 
-function solution(N, arr) {
+// solve.1 O(n^2)
+function solution1(N, arr) {
   let answer = 0;
   for (let i = 0; i < arr.length; i++) {
     let temp = 0;
@@ -29,6 +30,40 @@ function solution(N, arr) {
   return answer;
 }
 
+// solve.2 review1 O(n)????
+function solution2(n, arr) {
+  let answer = (lt = rt = sum = 0);
+
+  for (let rt = 0; rt < arr.length; rt++) {
+    sum += arr[rt];
+    while (sum > n) {
+      sum -= arr[lt++];
+    }
+    answer += rt - lt + 1;
+  }
+  return answer;
+}
+
+// solve.3 review2
+// function solution2(n, arr) {
+//   let answer = (lt = rt = sum = 0);
+
+//   while (lt <= arr.length) {
+//     if (sum <= n) {
+//       sum += arr[rt];
+//       answer += rt - lt + 1;
+//       rt++;
+//     } else {
+//       while (sum >= n) {
+//         lt++;
+//       }
+//     }
+//   }
+//   return answer;
+// }
+
 let arr = [1, 2, 3, 1, 4];
 
-console.log(solution(5, arr));
+console.log(solution1(5, arr));
+console.log(solution2(5, arr));
+// console.log(solution3(5, arr));
