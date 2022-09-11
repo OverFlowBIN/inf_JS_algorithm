@@ -15,7 +15,8 @@
 // 12 15 11 20 25 10 20 19 13 15
 // ▣ 출력예제 1 56
 
-function solution(K, arr) {
+// solve.1 => O(n^2)
+function solution1(K, arr) {
   let answer = Number.MIN_SAFE_INTEGER;
 
   for (let i = 0; i < arr.length - 2; i++) {
@@ -29,5 +30,20 @@ function solution(K, arr) {
   return answer;
 }
 
+// solve.2 => review, O(n)
+function solution2(k, arr) {
+  let temp = arr.slice(0, k).reduce((acc, cur) => acc + cur);
+  let answer = Number.MIN_SAFE_INTEGER;
+
+  for (let i = 0; i < arr.length - k; i++) {
+    temp = temp - arr[i] + arr[i + k];
+
+    if (answer <= temp) answer = temp;
+  }
+
+  return answer;
+}
+
 let arr = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
-console.log(solution(3, arr));
+console.log(solution1(3, arr));
+console.log(solution2(3, arr));

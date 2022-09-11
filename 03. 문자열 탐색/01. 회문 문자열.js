@@ -60,11 +60,31 @@ function solution2(str) {
   return answer;
 }
 
+function solution3(str) {
+  str = str.toLowerCase();
+
+  let isEqual = "YES";
+  for (let i = 0; i < Math.floor(str.length / 2); i++) {
+    if (str[i] !== str[str.length - 1 - i]) isEqual = "NO";
+  }
+
+  return isEqual;
+}
+
 str = "gooG";
 console.log(solution2(str));
 
 str = "gGoGG";
 console.log(solution2(str));
 
-str = "abcdcbA";
+str = "abcdbcbA";
 console.log(solution2(str));
+
+str = "gooG";
+console.log(solution3(str));
+
+str = "gGoGG";
+console.log(solution3(str));
+
+str = "abcdefedcbAa";
+console.log(solution3(str));

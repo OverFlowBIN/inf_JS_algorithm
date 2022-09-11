@@ -64,8 +64,32 @@ function solution2(str1, str2) {
   return isEqual;
 }
 
+// solve.3 review
+function solution3(str1, str2) {
+  let answer = "YES";
+  let map = new Map();
+  for (let el of str1) {
+    if (!map.has(el)) map.set(el, 1);
+    else map.set(el, map.get(el) + 1);
+  }
+
+  for (let el of str2) {
+    if (map.has(el)) map.set(el, map.get(el) - 1);
+    else {
+      return "NO";
+    }
+  }
+  console.log(map);
+  for (let el of str2) {
+    if (map.get(el) !== 0) return "NO";
+  }
+
+  return answer;
+}
+
 let str1 = "AbaAeCe",
   str2 = "baeeACA";
 
 console.log(solution1(str1, str2));
 console.log(solution2(str1, str2));
+console.log(solution3(str1, str2));

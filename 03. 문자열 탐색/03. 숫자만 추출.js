@@ -18,9 +18,6 @@ function solution1(str) {
   return answer;
 }
 
-let str = "g0en2T0s8eSoft";
-console.log(solution1(str));
-
 // sovle.2 (isNaN)
 function solution2(str) {
   let answer = 0;
@@ -30,5 +27,23 @@ function solution2(str) {
   return answer;
 }
 
+// solve.3 review
+function solution3(str) {
+  let answer = 0;
+  for (let el of str) {
+    if (!isNaN(el)) answer = answer * 10 + Number(el);
+  }
+  return +answer;
+}
+
+let str = "g0en2T0s8eSoft";
+console.log(solution1(str));
+
 str = "g0e@#5t3n2T0s8eSof1t";
 console.log(solution2(str));
+
+str = "g0en2T0s8eSoft";
+console.log(solution3(str));
+
+str = "g0e@#5t3n2T0s8eSof1t";
+console.log(solution3(str));

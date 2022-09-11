@@ -31,5 +31,44 @@ function solution1(k, arr) {
   return answer[k - 1];
 }
 
+// solve.2 review
+function solution2(k, arr) {
+  // 카드의 값이 큰 순서대로 정렬
+  arr = arr.sort((a, b) => b - a);
+
+  let stack = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      for (let k = j + 1; k < arr.length; k++) {
+        if (stack.indexOf(arr[i] + arr[j] + arr[k]) < 0)
+          stack.push(arr[i] + arr[j] + arr[k]);
+      }
+    }
+  }
+  return stack[k - 1];
+}
+
+// solve.3 refernce => Set
+function solution3(k, arr) {
+  let answer;
+  let n = arr.length;
+
+  // set은 기본적으로 중복을 제거한다.
+  let temp = new Set();
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      for (let k = j + 1; k < n; k++) {
+        temp.add(arr[i] + arr[j] + arr[k]);
+      }
+    }
+  }
+  let sortedArr = Array.from(temp).sort((a, b) => b - a);
+  answer = sortedArr[k - 1];
+
+  return answer;
+}
+
 let arr = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
 console.log(solution1(3, arr));
+console.log(solution2(3, arr));
+console.log(solution3(3, arr));

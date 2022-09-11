@@ -39,7 +39,7 @@ function solution1(arr) {
   return max;
 }
 
-// solve.1 => new Map() 사용 (ES6 부터 사용 가능)
+// solve.2 => new Map() 사용 (ES6 부터 사용 가능)
 function solution2(arr) {
   let map = new Map();
 
@@ -63,6 +63,26 @@ function solution2(arr) {
   return maxChar;
 }
 
+// solve.3 review
+function solution3(arr) {
+  let map = new Map();
+  for (let el of arr) {
+    if (!map.has(el)) map.set(el, 1);
+    else map.set(el, map.get(el) + 1);
+  }
+
+  console.log(map);
+  let answer;
+  let max = 0;
+  for (let [key, value] of map) {
+    if (value >= max) {
+      max = value;
+      answer = key;
+    }
+  }
+  return answer;
+}
+
 let arr = [
   "B",
   "A",
@@ -83,3 +103,5 @@ let arr = [
 console.log(solution1(arr));
 
 console.log(solution2(arr));
+
+console.log(solution3(arr));

@@ -8,6 +8,7 @@
 // ▣ 입력예제 1 KKHSSSSSSSE
 // ▣ 출력예제 1 K2HS7E
 
+// solve.1
 function solution1(str) {
   let answer = "";
   let temp = 1;
@@ -23,5 +24,27 @@ function solution1(str) {
   return answer;
 }
 
+// solve.2
+function solution2(str) {
+  let answer = "";
+  let temp = "";
+  str = str + " ";
+  for (let i = 0; i < str.length; i++) {
+    if (temp.length === 0 || temp[temp.length - 1] === str[i]) {
+      temp += str[i];
+    } else {
+      if (temp.length > 1) answer += temp[0] + temp.length;
+      else {
+        answer += temp;
+      }
+      temp = str[i];
+    }
+  }
+  return answer;
+}
+
 let str = "KHHHKHSSSSSSSEE"; // K2HS7E
 console.log(solution1(str));
+
+str = "KHHHKHSSSSSSSEE"; // K2HS7E
+console.log(solution2(str));

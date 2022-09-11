@@ -26,7 +26,6 @@ function solution1(N, arr) {
       }
     }
   }
-
   return answer;
 }
 

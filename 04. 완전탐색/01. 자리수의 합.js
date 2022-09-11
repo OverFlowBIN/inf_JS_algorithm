@@ -38,9 +38,6 @@ function solution1(arr) {
   return arr[maxIdx];
 }
 
-let arr = [128, 460, 603, 40, 521, 137, 123];
-console.log(solution1(arr));
-
 // sovle.2 (for문 한번으로 끝내기 => 반복문 돌며 새로운 값을 만들지만 기존값은 유지되는 것을 이용)
 function solution2(arr) {
   let answer;
@@ -60,5 +57,29 @@ function solution2(arr) {
   return answer;
 }
 
+// solve.3 review
+function solution3(arr) {
+  let answer;
+
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let sum = arr[i]
+      .toString()
+      .split("")
+      .reduce((acc, arr) => acc + Number(arr), 0);
+    if (total <= sum) {
+      total = sum;
+      answer = arr[i];
+    }
+  }
+  return answer;
+}
+
+let arr = [128, 460, 603, 40, 521, 137, 123];
+console.log(solution1(arr));
+
 arr = [219, 128, 460, 603, 40, 521, 137, 123];
 console.log(solution2(arr));
+
+arr = [219, 128, 460, 603, 40, 2451, 137, 123];
+console.log(solution3(arr));

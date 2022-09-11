@@ -25,9 +25,6 @@ function solution1(str) {
   return answer;
 }
 
-let str = "found7, time: study; Yduts; emit, 7Dnuof";
-console.log(solution1(str));
-
 function solution2(str) {
   let answer = "YES";
   str = str.toLowerCase().replace(/[^a-z]/g, "");
@@ -40,5 +37,23 @@ function solution2(str) {
   return answer;
 }
 
+function solution3(str) {
+  str = str.toLowerCase().replace(/[^a-z]/g, "");
+  let isEqual = "YES";
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== str[str.length - 1 - i]) {
+      isEqual = "NO";
+      break;
+    }
+  }
+  return isEqual;
+}
+
+let str = "found7, time: study; Yduts; emit, 7Dnuof";
+console.log(solution1(str));
+
 str = "ewqasdfound7, time: study; Yduts; emit, 7Dnuofdsaqwe";
 console.log(solution2(str));
+
+str = "ewqasdfound7, time: study; Yduts; emit, 7Dnuofdsaqwe22222";
+console.log(solution3(str));

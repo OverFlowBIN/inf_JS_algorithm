@@ -29,9 +29,6 @@ function solution1(arr) {
   return answer;
 }
 
-let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
-console.log(solution1(arr));
-
 // solve.2
 function solution2(arr) {
   let answer = [];
@@ -57,6 +54,9 @@ function solution2(arr) {
 
   return answer;
 }
+
+let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+console.log(solution1(arr));
 
 arr = [32, 55, 62, 2, 250, 370, 200, 30, 100];
 console.log(solution2(arr));

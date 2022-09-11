@@ -45,6 +45,26 @@ function solution1(seed, arr) {
   return answer;
 }
 
+// solve.2 review
+function solution2(seed, arr) {
+  let answer = Number.MAX_SAFE_INTEGER;
+  arr.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+
+  for (let i = 0; i < arr.length; i++) {
+    let temp = arr[i][0] / 2 + arr[i][1];
+    let count = 0;
+    for (let j = 0; j < arr.length; j++) {
+      if (i !== j || temp <= seed) {
+        temp += arr[j][0] + arr[j][1];
+        count++;
+      }
+    }
+
+    answer = Math.min(count, answer);
+  }
+  return answer;
+}
+
 let arr = [
   [6, 6],
   [2, 2],
@@ -54,3 +74,4 @@ let arr = [
 ];
 
 console.log(solution1(28, arr));
+console.log(solution2(28, arr));
