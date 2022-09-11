@@ -13,20 +13,38 @@
 // ▣ 출력예제 1 NO
 
 // sovle.1
-function solution(bracket) {
+function solution1(bracket) {
   let stack = [];
 
   for (el of bracket) {
     if (el === "(") stack.push(el);
     else {
       if (stack.length === 0) return "NO";
-      stack.pop();
+      let pop = stack.pop();
+      // if (pop === undefined) return "NO";
     }
   }
   if (stack.length > 0) return "NO";
   return "YES";
 }
 
-let bracket = "(()(()))(()";
+function solution2(bracket) {
+  let answer = "YES";
+  let stack = [];
+  for (let el of bracket) {
+    if (el === "(") stack.push(el);
+    else {
+      let pop = stack.pop();
+      if (pop === undefined) return "NO";
+    }
+  }
+  if (stack.length > 0) return "NO";
+  return answer;
+}
+
+let bracket = "()()(";
+console.log(solution1(bracket));
+console.log(solution2(bracket));
 bracket = "((()())())())(()";
-console.log(solution(bracket));
+console.log(solution1(bracket));
+console.log(solution2(bracket));

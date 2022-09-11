@@ -52,11 +52,7 @@
 
 // stack => [4, 3, 1, 1, 3, 2, x, 4] => 3, 1 , 1, 3 => return 4ea
 
-function stackCheck(stack) {
-  // 4 3 1 1 3 2 4
-}
-
-function solution(board, moves) {
+function solution1(board, moves) {
   let answer = 0;
   let stack = [];
 
@@ -86,6 +82,28 @@ function solution(board, moves) {
   return answer;
 }
 
+function solution2(board, move) {
+  let answer = 0;
+  let stack = [];
+
+  for (let el of move) {
+    for (let i = 0; i < board.length; i++) {
+      if (board[i][el - 1] !== 0) {
+        if (stack[stack.length - 1] === board[i][el - 1]) {
+          stack.pop();
+          answer += 2;
+        } else {
+          stack.push(board[i][el - 1]);
+        }
+        board[i][el - 1] = 0;
+        break;
+      }
+    }
+  }
+
+  return answer;
+}
+
 let board = [
   [0, 0, 0, 0, 0],
   [0, 0, 1, 0, 3],
@@ -95,7 +113,8 @@ let board = [
 ];
 
 let move = [1, 5, 3, 5, 1, 2, 1, 4];
-console.log(solution(board, move));
+console.log(solution1(board, move));
+console.log(solution2(board, move));
 
 // 4 3 1 3 4 2 4 4
 
