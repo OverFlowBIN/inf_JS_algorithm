@@ -89,9 +89,10 @@ function solution2(board, move) {
   for (let el of move) {
     for (let i = 0; i < board.length; i++) {
       if (board[i][el - 1] !== 0) {
+        // console.log(board[i][el - 1]);
         if (stack[stack.length - 1] === board[i][el - 1]) {
           stack.pop();
-          answer += 2;
+          answer = answer + 2;
         } else {
           stack.push(board[i][el - 1]);
         }
@@ -100,6 +101,7 @@ function solution2(board, move) {
       }
     }
   }
+  // console.log(board);
 
   return answer;
 }
@@ -111,9 +113,17 @@ let board = [
   [4, 2, 4, 4, 2],
   [3, 5, 1, 3, 1],
 ];
-
 let move = [1, 5, 3, 5, 1, 2, 1, 4];
 console.log(solution1(board, move));
+
+board = [
+  [0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 3],
+  [0, 2, 5, 0, 1],
+  [4, 2, 4, 4, 2],
+  [3, 5, 1, 3, 1],
+];
+move = [1, 5, 3, 5, 1, 2, 1, 4];
 console.log(solution2(board, move));
 
 // 4 3 1 3 4 2 4 4

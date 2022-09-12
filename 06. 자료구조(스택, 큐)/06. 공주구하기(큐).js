@@ -74,12 +74,21 @@ function solution3(N, K) {
   }
 }
 
-console.log(solution1(8, 3));
+function solution4(n, k) {
+  let queue = Array.from({ length: n }, (_, idx) => idx + 1);
 
-console.time("solution2");
-console.timeEnd("solution2");
-console.time("solution3");
-console.timeEnd("solution3");
+  while (queue.length > 1) {
+    for (let i = 0; i < k; i++) {
+      if (i !== k - 1) {
+        queue.push(queue.shift());
+      } else queue.shift();
+    }
+  }
+  return queue[0];
+}
 
-console.log(solution2(8, 3));
-console.log(solution3(8, 3));
+console.log(solution1(123, 7));
+console.log(solution2(123, 7));
+console.log(solution3(123, 7));
+console.log(solution4(123, 7));
+console.log(solution4(123, 7));

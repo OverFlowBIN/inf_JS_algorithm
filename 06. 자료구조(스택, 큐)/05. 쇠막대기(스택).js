@@ -24,7 +24,7 @@
 // pesudocode
 // stack으로 처리 할 수 있다는것에 초점을 맞추고 for문을 돌아보며 변화되는 사항을 체크하다 보면 순서가 보인다.
 
-function solution(str) {
+function solution1(str) {
   let answer = 0;
   let stack = [];
   for (let i = 0; i < str.length; i++) {
@@ -38,8 +38,31 @@ function solution(str) {
   return answer;
 }
 
-let str = "()(((()())(())()))(())";
-console.log(solution(str));
+function solution2(str) {
+  let answer = 0;
+  let stack = [];
 
-str = "(((()(()()))(())()))(()())";
-console.log(solution(str));
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "(") stack.push(str[i]);
+    else {
+      stack.pop();
+      let len = stack.length;
+      if (str[i - 1] === ")") answer++;
+      else answer += len;
+    }
+  }
+
+  return answer;
+}
+
+let str1 = "()(((()())(())()))(())";
+console.log(solution1(str1));
+
+str1 = "(((()(()()))(())()))(()())";
+console.log(solution1(str1));
+
+let str2 = "()(((()())(())()))(())";
+console.log(solution2(str2));
+
+str2 = "(((()(()()))(())()))(()())";
+console.log(solution2(str2));

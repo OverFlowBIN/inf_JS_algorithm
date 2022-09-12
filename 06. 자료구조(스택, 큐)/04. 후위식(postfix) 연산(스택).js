@@ -37,7 +37,26 @@ function solution1(str) {
   return stack[0];
 }
 
-// solve.2 => refactoring
+// solve.2 review
+function solution2(str) {
+  let stack = [];
+
+  for (let i = 0; i < str.length; i++) {
+    if (!isNaN(str[i])) {
+      stack.push(str[i]);
+    } else {
+      let pop1 = +stack.pop();
+      let pop2 = +stack.pop();
+      if (str[i] === "+") stack.push(pop2 + pop1);
+      if (str[i] === "-") stack.push(pop2 - pop1);
+      if (str[i] === "*") stack.push(pop2 * pop1);
+    }
+  }
+  return stack[0];
+}
 
 let str = "352+*9-";
 console.log(solution1(str));
+
+str = "352+*9-";
+console.log(solution2(str));

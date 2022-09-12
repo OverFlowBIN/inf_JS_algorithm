@@ -20,7 +20,6 @@
 function solution1(major, subject) {
   major = major.split("");
   subject = subject.split("");
-  console.log(major);
 
   while (major.length) {
     for (el of subject) {
@@ -34,6 +33,24 @@ function solution1(major, subject) {
   }
 }
 
+function solution2(major, subject) {
+  let stack = major.split("");
+
+  for (let el of subject) {
+    if (el !== stack[0]) {
+      if (stack.indexOf(el) > 0) return "NO";
+    } else {
+      stack.shift();
+    }
+  }
+  if (stack.length === 0) return "YES";
+  else return "NO";
+}
+
 let major = "CBA";
 let subject = "CBDGEA";
 console.log(solution1(major, subject));
+
+major = "CBA";
+subject = "CBDGEA";
+console.log(solution2(major, subject));
