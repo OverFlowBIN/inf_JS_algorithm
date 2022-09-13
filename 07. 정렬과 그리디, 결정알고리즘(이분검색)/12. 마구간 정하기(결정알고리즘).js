@@ -26,7 +26,7 @@
 // mid = 4 + 4 => 여기서 lt, rt가 같으므로 종료
 // 따라서 mid(최소거리)가 3!!
 
-// solve.1 내가 푼것
+// solve.1 내가 푼것 ==> 틀림!!!!!!
 function solution1(arr, k) {
   let answer = 0;
   arr = arr.sort((a, b) => a - b);
@@ -89,6 +89,39 @@ function solution2(stable, c) {
   return answer;
 }
 
-let arr = [1, 2, 8, 4, 9];
+function solution3(stable, hores) {
+  let answer;
+  stable.sort((a, b) => a - b);
+
+  // return: 들어간 말의 개체수
+  function count(stable, interval) {
+    let cnt = 1;
+    let sum = stable[0];
+    for (let i = 1; i < stable.length; i++) {
+      if (stable[i] >= interval + sum) {
+        cnt++;
+        sum = stable[i];
+      }
+    }
+    // console.log("cnt", cnt);
+    return cnt;
+  }
+
+  let lt = 1;
+  let rt = stable[stable.length - 1];
+  while (lt <= rt) {
+    let mid = Math.floor((lt + rt) / 2);
+    if (count(stable, mid) >= hores) {
+      lt = mid + 1;
+      answer = mid;
+    } else {
+      rt = mid - 1;
+    }
+  }
+  return answer;
+}
+
+let arr = [1, 2, 8, 4, 9, 10, 14, 20, 18];
 console.log(solution1(arr, 3));
 console.log(solution2(arr, 3));
+console.log(solution3(arr, 3));
