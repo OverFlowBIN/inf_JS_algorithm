@@ -24,12 +24,12 @@
 // 캐시크기 : S => 비어있는 상태로 진행
 // 작업 갯수 : N
 
-const solution = (s, n) => {
+const solution1 = (s, n) => {
   let cache = Array.from({ length: s }, () => 0);
 
   for (el of n) {
     let cacheIdx = cache.indexOf(el);
-    console.log(cacheIdx);
+
     if (cacheIdx < 0) {
       cache.pop();
       cache.unshift(el);
@@ -44,5 +44,33 @@ const solution = (s, n) => {
   return cache;
 };
 
+function solution2(s, n) {
+  let queue = [];
+  // let len = queue.len
+  for (let i = 0; i < n.length; i++) {
+    if (queue.indexOf(n[i]) === -1) {
+      queue.unshift(n[i]);
+      if (queue.length > s) queue.pop();
+    } else if (queue.indexOf(n[i]) >= 0) {
+      let idx = queue.indexOf(n[i]);
+      queue.splice(idx, 1);
+      queue.unshift(n[i]);
+    }
+  }
+  return queue;
+}
+
 let n = [1, 2, 3, 2, 6, 2, 3, 5, 7];
-console.log(solution(5, n));
+console.time("1");
+console.log(solution1(5, n));
+console.timeEnd("1");
+
+n = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+console.time("1");
+console.log(solution1(5, n));
+console.timeEnd("1");
+
+n = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+console.time("2");
+console.log(solution2(5, n));
+console.timeEnd("2");

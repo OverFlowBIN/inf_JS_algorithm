@@ -19,13 +19,10 @@
 // 120 130 150 150 130 150
 // ▣ 출력예제 2 35
 
-const solution = (arr) => {
+const solution1 = (arr) => {
   let answer = [];
   let copyArr = arr.slice(0);
   let sortedArr = copyArr.sort((a, b) => a - b);
-
-  console.log("arr", arr);
-  console.log("sortedArr", sortedArr);
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] !== sortedArr[i]) answer.push(i + 1);
@@ -33,8 +30,24 @@ const solution = (arr) => {
   return answer;
 };
 
+function solution2(arr) {
+  let answer = [];
+  let sortedArr = arr.slice().sort((a, b) => a - b);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (sortedArr[i] !== arr[i]) answer.push(i + 1);
+  }
+  return answer;
+}
+
 let arr = [120, 125, 152, 130, 135, 135, 143, 127, 160];
-console.log(solution(arr));
+console.log(solution1(arr));
 
 arr = [120, 130, 150, 150, 130, 150];
-console.log(solution(arr));
+console.log(solution1(arr));
+
+arr = [120, 125, 152, 130, 135, 135, 143, 127, 160];
+console.log(solution2(arr));
+
+arr = [120, 130, 150, 150, 130, 150];
+console.log(solution2(arr));

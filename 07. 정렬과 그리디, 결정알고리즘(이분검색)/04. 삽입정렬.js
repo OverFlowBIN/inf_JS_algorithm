@@ -42,12 +42,32 @@ function solution2(arr) {
       // break가 실행될떄 for문을 바로 나가는 것이 아니라 밑에 코드가 있으면 실행되고 나간다.
       arr[j + 1] = temp;
       // j의 scope밖이 있으므로 실행이 안된다.
-      // 하지만 두번째 포문 밖에서 let j를 지정해 주면 밖에서도 사용 가능하다!
+      // 하지만 두번째 포문 밖에서 let j를 지정해 주면 밖에서도 사용 가능하다! => break로 j의 point가 잡혀있음.
     }
+  }
+  return arr;
+}
+
+// solve.3 review
+function solution3(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let temp = arr[i];
+    let j;
+    for (j = i - 1; j >= 0; j--) {
+      if (temp < arr[j]) {
+        arr[j + 1] = arr[j];
+      } else break;
+    }
+    arr[j + 1] = temp;
   }
   return arr;
 }
 
 let arr = [11, 7, 5, 6, 10, 9];
 console.log(solution1(arr));
+
+arr = [11, 7, 5, 6, 10, 9];
 console.log(solution2(arr));
+
+arr = [11, 7, 5, 6, 10, 9];
+console.log(solution3(arr));

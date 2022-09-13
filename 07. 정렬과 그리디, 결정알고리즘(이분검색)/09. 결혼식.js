@@ -19,7 +19,7 @@
 // 5 14
 // ▣ 출력예제 1 2
 
-const solution = (arr) => {
+const solution1 = (arr) => {
   let count = 0;
   let timeLine = [];
 
@@ -29,7 +29,7 @@ const solution = (arr) => {
   });
 
   timeLine.sort((a, b) => {
-    if (a[0] == b[0]) return a[1].charCodeAt() - b[1].charCodeAt();
+    if (a[0] === b[0]) return a[1].charCodeAt() - b[1].charCodeAt();
     return a[0] - b[0];
   });
 
@@ -43,14 +43,59 @@ const solution = (arr) => {
   return count;
 };
 
+function solution2(arr) {
+  let answer = 0;
+
+  let max = Math.max(...arr.flat());
+
+  let time = Array.from({ length: max + 1 }, () => []);
+
+  for (let i = 0; i < arr.length; i++) {
+    time[arr[i][0]].push("s");
+    time[arr[i][1]].push("e");
+  }
+
+  let temp = 0;
+  for (let i = 0; i < time.length; i++) {
+    if (time[i].length !== 0) {
+      while (time[i].length) {
+        let shift = time[i].shift();
+        if (shift === "s") temp++;
+        else temp--;
+      }
+      answer = Math.max(answer, temp);
+    }
+  }
+
+  return answer;
+}
+
 let arr = [
-  [14, 18],
-  [12, 15],
+  [14, 24],
+  [12, 30],
   [15, 20],
-  [20, 30],
+  [20, 22],
   [5, 14],
 ];
-console.log(solution(arr));
+
+console.time("test");
+console.log(solution1(arr));
+console.timeEnd("test");
+
+console.time("1");
+console.log(solution1(arr));
+console.timeEnd("1");
+
+arr = [
+  [14, 24],
+  [12, 30],
+  [15, 20],
+  [20, 22],
+  [5, 14],
+];
+console.time("2");
+console.log(solution2(arr));
+console.timeEnd("2");
 
 // 0 1 2 3 4 5 6 7 8 9 10 11 12
 // s---------e   s-----e

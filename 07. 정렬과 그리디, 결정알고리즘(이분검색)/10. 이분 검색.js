@@ -43,9 +43,24 @@ const solution2 = (arr, num) => {
   return answer;
 };
 
+function solution3(arr, num) {
+  arr.sort((a, b) => a - b);
+
+  let mid = Math.floor(arr.length / 2);
+  let left = 0;
+  let right = arr.length - 1;
+  while (left <= mid) {
+    if (arr[mid] === num) return mid + 1;
+    else if (arr[mid] > num) right = mid - 1;
+    else left = mid + 1;
+    mid = Math.floor((left + right) / 2);
+  }
+}
+
 let arr = [23, 87, 65, 12, 57, 32, 99, 81];
 console.log(solution1(arr, 32));
 console.log(solution2(arr, 32));
+console.log(solution3(arr, 32));
 
 // 처으 startIdx = 0, endIdx = arr.length - 1
 // 미드 = lenth.arr/2.mathfloor(5) 작을 경우 startIdx = 0(유지), endIdx = mid - 1(4)

@@ -19,7 +19,7 @@
 // 23
 // ▣ 출력예제 2 2
 
-const solution = (arr) => {
+const solution1 = (arr) => {
   let answer = 0;
 
   arr.sort((a, b) => {
@@ -38,6 +38,26 @@ const solution = (arr) => {
   return answer;
 };
 
+// solve.2 review
+function solution2(arr) {
+  let answer = 0;
+
+  arr.sort((a, b) => {
+    if (a[1] === b[1]) return a[0] - b[0];
+    return a[1] - b[1];
+  });
+
+  let startTime = -1;
+  for (el of arr) {
+    if (el[0] >= startTime) {
+      startTime = el[1];
+      answer++;
+    }
+  }
+
+  return answer;
+}
+
 let arr = [
   [1, 4],
   [2, 3],
@@ -45,11 +65,27 @@ let arr = [
   [4, 6],
   [5, 7],
 ];
-console.log(solution(arr));
+console.log(solution1(arr));
 
 arr = [
   [3, 3],
   [1, 3],
   [2, 3],
 ];
-console.log(solution(arr));
+console.log(solution1(arr));
+
+arr = [
+  [1, 4],
+  [2, 3],
+  [3, 5],
+  [4, 6],
+  [5, 7],
+];
+console.log(solution2(arr));
+
+arr = [
+  [3, 3],
+  [1, 3],
+  [2, 3],
+];
+console.log(solution2(arr));

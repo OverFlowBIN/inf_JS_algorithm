@@ -12,7 +12,7 @@
 // ▣ 출력예제 1
 // 5 7 11 13 15 23
 
-function solution(arr) {
+function solution1(arr) {
   for (let i = 0; i < arr.length; i++) {
     let idx = i;
     for (let j = i + 1; j < arr.length; j++) {
@@ -28,5 +28,21 @@ function solution(arr) {
   return arr;
 }
 
+function solution2(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let idx = i;
+    for (let j = i; j < arr.length; j++) {
+      if (arr[idx] > arr[j]) {
+        idx = j;
+      }
+    }
+    [arr[i], arr[idx]] = [arr[idx], arr[i]];
+  }
+  return arr;
+}
+
 let arr = [13, 5, 11, 7, 23, 15];
-console.log(solution(arr));
+console.log(solution1(arr));
+
+arr = [13, 5, 11, 7, 23, 15];
+console.log(solution2(arr));
