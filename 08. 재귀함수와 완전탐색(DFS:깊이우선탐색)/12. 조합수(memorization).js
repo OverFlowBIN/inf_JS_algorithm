@@ -51,8 +51,52 @@ function solution2(n, r) {
   return answer;
 }
 
+// solve.3 review_1
+function solution3(n, r) {
+  let answer;
+  let graph1 = Array.from({ length: n + 1 }, () => Array(r + 1).fill(0));
+
+  function DFS(n, r) {
+    if (r === 0 || n - r === 0) return 1;
+    if (graph1[n][r]) return graph1[n][r];
+    else {
+      if (!graph1[n][r]) graph1[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r);
+      return graph1[n][r];
+    }
+  }
+
+  answer = DFS(n, r);
+  return answer;
+}
+
+// solve.4 compare to solve.3
+function solution4(n, r) {
+  let answer;
+  let graph2 = Array.from({ length: n + 1 }, () => Array(r + 1).fill(0));
+
+  function DFS(n, r) {
+    if (r === 0 || n - r === 0) return 1;
+    if (graph2[n][r]) return graph2[n][r];
+    else {
+      return (graph2[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r));
+    }
+  }
+
+  answer = DFS(n, r);
+  return answer;
+}
+
 console.log(solution1(5, 3));
 console.log(solution1(33, 19));
 
 console.log(solution2(5, 3));
 console.log(solution2(33, 19));
+
+console.log(solution3(5, 3));
+console.time("3");
+console.log(solution3(33, 19));
+console.timeEnd("3");
+
+console.time("4");
+console.log(solution4(33, 19));
+console.timeEnd("4");

@@ -53,10 +53,56 @@ function solution2(arr, k) {
   }
 
   DFS(0, 0, 0);
-  return answer.length;
+  return answer;
 }
 
-let arr = [2, 4, 5, 8, 12];
+// solve.3 review
+function solution3(arr, k) {
+  let answer = 0;
+
+  function DFS(vertex, idx, sum) {
+    if (vertex === k && sum % 6 === 0) {
+      answer++;
+      // return;
+    } else {
+      for (let i = idx; i < arr.length; i++) {
+        DFS(vertex + 1, i + 1, sum + arr[i]);
+      }
+    }
+  }
+
+  DFS(0, 0, 0);
+  return answer;
+}
+
+// solve.4 => compare to solve.3
+function solution4(arr, k) {
+  let answer = 0;
+
+  function DFS(vertex, idx, sum) {
+    if (vertex === k && sum % 6 === 0) {
+      answer++;
+      return;
+    } else {
+      for (let i = idx; i < arr.length; i++) {
+        DFS(vertex + 1, i + 1, sum + arr[i]);
+      }
+    }
+  }
+
+  DFS(0, 0, 0);
+  return answer;
+}
+
+let arr = [2, 4, 5, 8, 12, 14, 17, 20, 22, 25, 30];
 let k = 3;
 console.log(solution1(arr, k));
 console.log(solution2(arr, k));
+
+console.time("3");
+console.log(solution3(arr, k));
+console.timeEnd("3");
+
+console.time("4");
+console.log(solution4(arr, k));
+console.timeEnd("4");

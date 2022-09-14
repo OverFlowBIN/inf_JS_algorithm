@@ -72,8 +72,37 @@ function solution3(coins, changes) {
   return answer;
 }
 
+// solve.4 => review
+function solution4(coins, changes) {
+  coins.sort((a, b) => b - a); // => 큰 값부터 보는게 시간적으로 유리하다
+  let answer = Number.MAX_SAFE_INTEGER;
+
+  function DFS(vertex, sum) {
+    if (sum > changes || vertex > answer)
+      return; // => 이미 정답에 가까운 답이 있으니 그것보다 큰건 패쓰
+    else if (sum === changes) {
+      answer = Math.min(answer, vertex);
+    } else {
+      for (let i = 0; i < coins.length; i++) {
+        DFS(vertex + 1, sum + coins[i]);
+      }
+    }
+  }
+
+  DFS(0, 0);
+  return answer;
+}
+
 let coins = [1, 2, 5, 8, 9];
-let changes = 19;
+let changes = 20;
 console.log(solution1(coins, changes));
+console.time("2");
 console.log(solution2(coins, changes));
+console.timeEnd("2");
+console.time("3");
 console.log(solution3(coins, changes));
+console.timeEnd("3");
+coins = [1, 2, 5, 8, 9];
+console.time("4");
+console.log(solution4(coins, changes));
+console.timeEnd("4");

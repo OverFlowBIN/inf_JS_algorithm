@@ -62,7 +62,28 @@ function solution2(n, m) {
   return answer;
 }
 
+// solve.3 => review
+function solution3(n, m) {
+  let answer = [];
+  let temp = [];
+
+  function DFS(count) {
+    if (count >= m) answer.push(temp.slice());
+    else {
+      for (let i = 1; i <= n; i++) {
+        temp.push(i);
+        DFS(count + 1);
+        temp.pop();
+      }
+    }
+  }
+
+  DFS(0);
+  return answer;
+}
+
 let n = 3,
   m = 2;
 console.log(solution1(n, m));
 console.log(solution2(n, m));
+console.log(solution3(n, m));

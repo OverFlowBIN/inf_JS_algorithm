@@ -16,7 +16,7 @@
 // 1 3 5 6 7 10
 // ▣ 출력예제 1 YES
 
-function solution(arr) {
+function solution1(arr) {
   let answer = "NO";
   let isUsed = Array.from({ length: arr.length }, () => 0); // [0, 0, 0, 0, 0, 0]
 
@@ -32,8 +32,6 @@ function solution(arr) {
       let laSum = la.reduce((acc, cur) => acc + cur, 0);
       let raSum = ra.reduce((acc, cur) => acc + cur, 0);
 
-      console.log("la", laSum, la);
-      console.log("ra", raSum, ra);
       if (laSum === raSum) {
         answer = "YES";
         return answer;
@@ -51,5 +49,30 @@ function solution(arr) {
   return answer;
 }
 
+function solution2(arr) {
+  let answer = "NO";
+  let sumGroup = [];
+
+  function DFS(vertex, sum) {
+    if (answer === "YES") return;
+    if (vertex >= arr.length) {
+      if (sumGroup.includes(sum)) answer = "YES";
+      else {
+        sumGroup.push(sum);
+        return;
+      }
+    } else {
+      DFS(vertex + 1, sum + arr[vertex]);
+
+      DFS(vertex + 1, sum);
+    }
+  }
+
+  DFS(0, 0);
+
+  return answer;
+}
+
 let arr = [1, 3, 5, 6, 7, 10];
-console.log(solution(arr));
+console.log(solution1(arr));
+console.log(solution2(arr));

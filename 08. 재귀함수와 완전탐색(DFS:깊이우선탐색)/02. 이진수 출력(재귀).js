@@ -71,8 +71,24 @@ function solution2(num) {
   return +answer;
 }
 
-console.log(solution1(213));
-console.log(solution2(213));
+function solution3(num) {
+  let answer = "";
+
+  function DFS(num) {
+    if (num === 0) return;
+    else {
+      DFS(Math.floor(num / 2));
+      answer += num % 2;
+    }
+  }
+
+  DFS(num);
+  return +answer;
+}
+
+console.log(solution1(57));
+console.log(solution2(57));
+console.log(solution3(57));
 // 10진수 2진수
 // 0     0
 // 1     1

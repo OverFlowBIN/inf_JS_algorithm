@@ -27,8 +27,23 @@ function solution2(num) {
   return DFS(num);
 }
 
+function solution3(num) {
+  let answer = [];
+
+  function DFS(num) {
+    if (num === 0) return;
+    else {
+      answer.unshift(num);
+      return num + DFS(num - 1);
+    }
+  }
+  DFS(num);
+  return answer;
+}
+
 console.log(solution1(5));
 console.log(solution2(5));
+console.log(solution3(5));
 
 // stack frame
 /*

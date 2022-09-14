@@ -88,8 +88,42 @@ function solution3(nums, m) {
   return answer;
 }
 
+function solution4(nums, m) {
+  let answer = [];
+  let isUsed = Array.from({ length: nums.length }, () => 0);
+
+  let temp = [];
+  function DFS(vertex) {
+    if (vertex > m) answer.push(temp.slice());
+    else {
+      for (let i = 0; i < nums.length; i++) {
+        if (isUsed[i] === 0) {
+          isUsed[i] = 1;
+          temp.push(nums[i]);
+          DFS(vertex + 1);
+          temp.pop();
+          isUsed[i] = 0;
+        }
+      }
+    }
+  }
+
+  DFS(0);
+  return answer;
+}
+
 let m = 2;
 let nums = [3, 6, 9];
-console.log(solution1(nums, m));
-console.log(solution2(nums, m));
+// console.log(solution1(nums, m));
+
+// console.time("2");
+// console.log(solution2(nums, m));
+// console.timeEnd("2");
+
+console.time("3");
 console.log(solution3(nums, m));
+console.timeEnd("3");
+
+console.time("4");
+console.log(solution4(nums, m));
+console.timeEnd("4");

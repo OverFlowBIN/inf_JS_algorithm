@@ -18,7 +18,7 @@
 // ▣ 출력예제 1
 // 3 1 2 4
 
-function solution(n, f) {
+function solution1(n, f) {
   let answer,
     flag = 0;
   let dy = Array.from(Array(11), () => Array(11).fill(0));
@@ -56,7 +56,10 @@ function solution(n, f) {
   return answer;
 }
 
-console.log(solution(4, 16));
+function solution2(n, f) {}
+
+console.log(solution1(4, 16));
+console.log(solution2(4, 16));
 
 // x x x x
 //  x x x

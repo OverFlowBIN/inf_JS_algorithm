@@ -52,5 +52,25 @@ function solution2(m, n) {
   return answer;
 }
 
-console.log(solution1(4, 2));
-console.log(solution2(4, 2));
+// solve.3 review
+function solution3(m, n) {
+  let answer = [];
+
+  let temp = [];
+  function DFS(vertex, s) {
+    if (vertex >= n) answer.push(temp.slice());
+    else {
+      for (let i = s; i <= m; i++) {
+        temp[vertex] = i;
+        DFS(vertex + 1, i + 1);
+      }
+    }
+  }
+
+  DFS(0, 1);
+  return answer; // => for문이 순차적으로 진행되므로 오름차순으로 정렬된 값이 리턴된다.
+}
+
+console.log(solution1(8, 4));
+console.log(solution2(8, 4));
+console.log(solution3(8, 4));

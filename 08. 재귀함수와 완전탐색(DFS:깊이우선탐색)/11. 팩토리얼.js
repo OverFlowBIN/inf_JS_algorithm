@@ -47,7 +47,18 @@ function solution3(num) {
   return answer;
 }
 
+function solution4(num) {
+  function DFS(num) {
+    if (num === 1) return 1;
+    else {
+      return num * DFS(num - 1);
+    }
+  }
+  return DFS(num);
+}
+
 let num = 5;
 console.log(solution1(num));
 console.log(solution2(num));
 console.log(solution3(num));
+console.log(solution4(num));

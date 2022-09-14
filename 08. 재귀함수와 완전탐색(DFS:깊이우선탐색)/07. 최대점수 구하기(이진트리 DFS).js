@@ -15,7 +15,7 @@
 // 15 8 63 74
 // ▣ 출력예제 1 41
 
-function solution(time, arr) {
+function solution1(time, arr) {
   let answer = Number.MIN_SAFE_INTEGER;
 
   function DFS(vt, sumTime, sumScore) {
@@ -24,6 +24,23 @@ function solution(time, arr) {
     } else {
       DFS(vt + 1, sumTime + arr[vt][1], sumScore + +arr[vt][0]);
       DFS(vt + 1, sumTime, sumScore);
+    }
+  }
+
+  DFS(0, 0, 0);
+  return answer;
+}
+
+function solution2(time, arr) {
+  let answer = Number.MIN_SAFE_INTEGER;
+
+  function DFS(idx, sumScore, sumTime) {
+    if (idx >= arr.length) {
+      if (sumTime <= time) answer = Math.max(answer, sumScore);
+      else return;
+    } else {
+      DFS(idx + 1, sumScore + arr[idx][0], sumTime + arr[idx][1]);
+      DFS(idx + 1, sumScore, sumTime);
     }
   }
 
@@ -40,4 +57,5 @@ let arr = [
   [7, 4],
 ];
 
-console.log(solution(time, arr));
+console.log(solution1(time, arr));
+console.log(solution2(time, arr));

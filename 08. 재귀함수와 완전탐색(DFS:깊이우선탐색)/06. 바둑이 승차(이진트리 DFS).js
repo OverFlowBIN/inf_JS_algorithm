@@ -72,13 +72,53 @@ function solution3(k, arr) {
   return answer;
 }
 
-// let k = 1100;
-// let arr = [
-//   81, 58, 42, 33, 61, 73, 18, 39, 28, 58, 38, 18, 96, 38, 47, 95, 15, 37, 59,
-//   15, 84, 25, 59, 37, 15, 59, 15, 48, 59, 62,
-// ];
-let k = 259;
-let arr = [81, 58, 42, 33, 61];
-console.log(solution1(k, arr));
-console.log(solution2(k, arr));
-console.log(solution3(k, arr));
+// sovle.4 => review.2
+function solution4(k, arr) {
+  let answer = Number.MIN_SAFE_INTEGER;
+
+  const DFS = (idx, sum) => {
+    if (idx >= arr.length) {
+      if (sum <= k) answer = Math.max(answer, sum);
+      else return;
+    } else {
+      DFS(idx + 1, sum + arr[idx]);
+      DFS(idx + 1, sum);
+    }
+  };
+  DFS(0, 0);
+  return answer;
+}
+
+// sovle.4 => review.2
+function solution5(k, arr) {
+  let answer = Number.MIN_SAFE_INTEGER;
+
+  const DFS = (idx, sum) => {
+    if (idx >= arr.length) {
+      if (sum <= k) answer = Math.max(answer, sum);
+      // else return;
+    } else {
+      DFS(idx + 1, sum + arr[idx]);
+      DFS(idx + 1, sum);
+    }
+  };
+  DFS(0, 0);
+  return answer;
+}
+
+let k = 1500;
+let arr = [
+  81, 58, 42, 33, 61, 73, 18, 39, 28, 58, 38, 18, 96, 38, 47, 95, 15, 37, 59,
+  38, 47, 95, 15, 37, 59,
+];
+// let k = 259;
+// let arr = [81, 58, 42, 33, 61];
+// console.log(solution1(k, arr));
+// console.log(solution2(k, arr));
+// console.log(solution3(k, arr));
+console.time("4");
+console.log(solution4(k, arr));
+console.timeEnd("4");
+console.time("5");
+console.log(solution5(k, arr));
+console.timeEnd("5");

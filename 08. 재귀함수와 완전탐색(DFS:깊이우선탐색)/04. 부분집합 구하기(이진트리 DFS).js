@@ -24,7 +24,7 @@
 // 해당 인덱스를 썻다면 ([0, 1, 0, 0] => 1을 사용)
 
 // solve.1
-function solution(n) {
+function solution1(n) {
   let answer = [];
   let isUsed = Array.from({ length: n + 1 }, () => 0);
 
@@ -47,4 +47,30 @@ function solution(n) {
   return answer;
 }
 
-console.log(solution(3));
+function solution2(num) {
+  let answer = [];
+  let isUsed = Array.from({ length: num + 1 }, () => 0);
+
+  let temp = [];
+  function DFS(vertex) {
+    if (vertex > num) {
+      for (let i = 0; i < isUsed.length; i++) {
+        if (isUsed[i] === 1) temp.push(i);
+      }
+      if (temp.length > 0) answer.push(temp);
+
+      temp = [];
+    } else {
+      isUsed[vertex] = 1;
+      DFS(vertex + 1);
+      isUsed[vertex] = 0;
+      DFS(vertex + 1);
+    }
+  }
+
+  DFS(1);
+  return answer;
+}
+
+console.log(solution1(3));
+console.log(solution2(3));
